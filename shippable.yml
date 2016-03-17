@@ -9,7 +9,7 @@ services:
 env:
   global:   
     - APP_NAME=shiphit
-   # - MONGOLAB_URI=mongodb://localhost/test
+    - MONGOLAB_URI=mongodb://localhost/test
    
 #before_install:
  # - which heroku || wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
