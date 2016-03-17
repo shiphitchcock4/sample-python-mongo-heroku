@@ -10,7 +10,7 @@ env:
   global:   
     - APP_NAME=shiphit
     - MONGOLAB_URI=mongodb://localhost/test
-    - secure: k1F0NH8edNIUtg7FA19IlTAaFG6qAx58WHsnC9SHT3Zpy6D1BANUXIyLPiukQxOVKXgXoKlo76PsdvO/LwO6Vix8sqYhg00fKpzauRAzhxcFde4uEUj71SSf9AoOVmRV2zVQCZd03qth0VIrm4nssK29OKLpbGzeLBTCsrQyZe59i9KOll3qQtnfI3obD3qot9QLwA7/vG+QDHq2EdT+jY3suEY8jkYCq7zObLrym+tRe40srqxz+siVybrp4sLkHjYu0NpRZhUMK5RODaIRg7H/QJ4woJBrMxyD9h/Kxcme1yU6Vv7CEjX1czbct0ncPpco6ig3Il0C71Lc+WKrRw==
+   
 #before_install:
  # - which heroku || wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
@@ -42,5 +42,6 @@ build:
     #- test -f ~/.ssh/id_rsa.heroku || ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.heroku && heroku keys:add ~/.ssh/id_rsa.heroku
     - test -f ~/.ssh/id_rsa.heroku || ssh-keygen -y -f /tmp/ssh/00_sub > ~/.ssh/id_rsa.heroku && heroku keys:add ~/.ssh/id_rsa.heroku
     - git remote -v | grep ^heroku || heroku git:remote --ssh-git --app $APP_NAME
-    - git push -f heroku $BRANCH:master      
-  
+    - git push -f heroku $BRANCH:master 
+  on_success :
+    - git push -f git@heroku.com:$APP_NAME.git master
